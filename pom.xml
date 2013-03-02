@@ -1,0 +1,189 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ch.noisette.jugl</groupId>
+
+    <artifactId>juglchallenge</artifactId>
+    <name>JUGL Challenge</name>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <description>
+       TODO
+    </description>
+
+    <properties>
+
+        <main.basedir>${project.basedir}</main.basedir>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependencies -->
+        <cobertura.version>2.5.1</cobertura.version>
+        <compile.source.version>1.6</compile.source.version>
+        <maven.assembly.version>2.2.1</maven.assembly.version>
+        <maven.compiler.version>2.0.2</maven.compiler.version>
+        <maven.javadoc.version>2.8</maven.javadoc.version>
+        <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
+        <maven.reports.version>2.2</maven.reports.version>
+        <maven.site.version>3.0-beta-3</maven.site.version>
+        <maven.jxr.version>2.1</maven.jxr.version>
+        <surefire.version>2.9</surefire.version>
+        <maven.eclipse.version>2.8</maven.eclipse.version>
+        <maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
+        <maven.doxia.markdown.version>1.3</maven.doxia.markdown.version>
+        <maven-findbugs.version>2.5.1</maven-findbugs.version>
+
+        <junit.version>4.11</junit.version>
+        <mockito.version>1.9.5</mockito.version>
+        <log4j.version>1.2.17</log4j.version>
+        <jackson.core.version>1.9.10</jackson.core.version>
+        <jackson.mapper.version>1.9.10</jackson.mapper.version>
+        <guava.version>13.0.1</guava.version>
+        <commons-cli.version>1.2</commons-cli.version>
+        <ips-common.version>2.37.0.1</ips-common.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <elephantbird.version>2.0.5-ATS-20110831</elephantbird.version>
+        <google-collections.version>1.0</google-collections.version>
+        <json-simple.version>1.1.1</json-simple.version>
+        <!-- Note: the IPS Pig Utils jar file does not have a Maven version
+                   actually; we are currently including it from a local copy.
+                   So the version number set here is not really used.
+        -->
+        <ips-pigutils.version>1.0</ips-pigutils.version>
+        <jetty.version>8.1.7.v20120910</jetty.version>
+        <!--jetty.version>${jetty.version}8.1.1.v20120215</jetty.version-->
+        <async-http-client.version>1.7.9</async-http-client.version>
+        <commons.httpclient.version>4.2.2</commons.httpclient.version>
+        <spring.version>3.0.0.RELEASE</spring.version>
+        <commons.net.version>3.2</commons.net.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <netty.version>3.5.11.Final</netty.version>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Benoit Perroud</name>
+            <id>bperroud</id>
+            <email>benoit@noisette.ch</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>sonatype-snapshots-repository</id>
+            <name>Sonatype Snapshots Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>oracleReleases</id>
+            <name>Oracle Released Java Packages</name>
+            <url>http://download.oracle.com/maven</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+         <dependency>
+             <groupId>com.ning</groupId>
+             <artifactId>async-http-client</artifactId>
+             <version>${async-http-client.version}</version>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+              <version>${junit.version}</version>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-all</artifactId>
+             <version>${mockito.version}</version>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
+             <version>${commons.lang.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>com.googlecode.json-simple</groupId>
+             <artifactId>json-simple</artifactId>
+             <version>${json-simple.version}</version>
+         </dependency> 
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <classpathContainers>
+                       <classpathContainer>
+                           org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-${compile.source.version}
+                       </classpathContainer>
+                    </classpathContainers>
+                    <additionalProjectFacets>
+                        <jst.java>${compile.source.version}</jst.java>
+                    </additionalProjectFacets>
+                    <wtpversion>2.0</wtpversion>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${compile.source.version}</source>
+                    <target>${compile.source.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.version}</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
